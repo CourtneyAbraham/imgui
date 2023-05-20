@@ -4,7 +4,7 @@ project(imgui)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED)
 
-set(FILES 
+set(FILES
 	${PROJECT_SOURCE_DIR}/imgui.cpp
 	${PROJECT_SOURCE_DIR}/imgui.h
 	${PROJECT_SOURCE_DIR}/imstb_rectpack.h
@@ -16,18 +16,20 @@ set(FILES
   ${PROJECT_SOURCE_DIR}/imgui_tables.cpp
   ${PROJECT_SOURCE_DIR}/imgui_widgets.cpp
  )
- 
-foreach(BACKEND allegro5 android dx10 dx11 dx12 dx9 glfw glut metal opengl2 opengl3 osx sdl2 sdl3 sdlrenderer vulkan wgpu win32)
+
+foreach(BACKEND glfw opengl3)
     set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_${BACKEND}.h")
     set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_${BACKEND}.cpp")
 endforeach()
 
-set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_opengl3_loader")
+set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_opengl3_loader.h")
 
 add_library(imgui STATIC
 	${FILES}
 )
 
+target_link_libraries(imgui glfw opengl32)
+
 target_include_directories(imgui PUBLIC
-    "${PROJECT_SOURCE_DIR}/.."
+    "./"
 )
