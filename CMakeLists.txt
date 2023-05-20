@@ -18,7 +18,8 @@ set(FILES
  )
  
 foreach(BACKEND allegro5 android dx10 dx11 dx12 dx9 glfw glut metal opengl2 opengl3 osx sdl2 sdl3 sdlrenderer vulkan wgpu win32)
-    set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_${BACKEND}")
+    set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_${BACKEND}.h")
+    set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_${BACKEND}.cpp")
 endforeach()
 
 set(FILES ${FILES} "${PROJECT_SOURCE_DIR}/backends/imgui_impl_opengl3_loader")
